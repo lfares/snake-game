@@ -61,6 +61,15 @@ function getSnakeOtherSide() {
 
 document.addEventListener('keydown', update)
 
+function endGame() {
+    for (i = 1; i < snake.length; i++){
+        if (snake[0].x == snake[i].x && snake[0].y == snake[i].y){
+            clearInterval(game)
+            alert("GAME OVER :-(")
+        }
+    }
+}
+
 function update(event) {
     // 37: arrow left, 38: arrow up, 39: arrow right, 40: arrow down
     if (event.keyCode == 37 && direction != "right") direction = "left"
@@ -70,6 +79,7 @@ function update(event) {
 }
 
 function initiateGame() {
+    endGame()
     createBackGround()
     createSnake()
     drawFood()
