@@ -6,8 +6,11 @@ snake[0] = {
     x: 8 * box,
     y: 8 * box
 } // put snake at the middle
-
 let direction = "right"
+let food = {
+    x: Math.floor(Math.random * 15 + 1) * box,
+    y: Math.floor(Math.random * 15 + 1) * box
+}
 
 function createBackGround() {
     context.fillStyle = "lightblue"
@@ -19,6 +22,12 @@ function createSnake() {
         context.fillStyle = "blue"
         context.fillRect(snake[i].x, snake[i].y, box, box)
     }
+}
+
+function drawFood() {
+    context.fillStyle = "pink"
+    context.fillRect(food.x, food.y, box, box)
+
 }
 
 function runSnake() {
@@ -58,6 +67,7 @@ function update(event) {
 function initiateGame() {
     createBackGround()
     createSnake()
+    drawFood()
     runSnake()
     getSnakeOtherSide()
 }
