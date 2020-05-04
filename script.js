@@ -8,8 +8,8 @@ snake[0] = {
 } // put snake at the middle
 let direction = "right"
 let food = {
-    x: Math.floor(Math.random * 15 + 1) * box,
-    y: Math.floor(Math.random * 15 + 1) * box
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box
 }
 
 function createBackGround() {
@@ -27,7 +27,6 @@ function createSnake() {
 function drawFood() {
     context.fillStyle = "pink"
     context.fillRect(food.x, food.y, box, box)
-
 }
 
 function runSnake() {
@@ -39,7 +38,13 @@ function runSnake() {
     else if (direction == "up") snakeY -= box
     else snakeY += box
 
-    snake.pop()
+    if (snakeX != food.x || snakeY != food.y){
+        snake.pop()
+    } else {
+        food.x = Math.floor(Math.random() * 15 + 1) * box
+        food.y = Math.floor(Math.random() * 15 + 1) * box
+    }
+
     let newHead = {
         x: snakeX,
         y: snakeY
